@@ -1,24 +1,18 @@
-import React, { Component } from "react";
+import React, { Component ,useState} from "react";
 import "./App.css";
-export default class Counter extends Component {
-  state = {
-    initialCount: this.props.initialCount,
-    count: this.props.initialCount,
-  };
-  setCount = (newValue) => {
-    this.setState({ count: newValue });
-  };
-  render() {
-    let initialCount = this.state.initialCount;
-    let currentCount = this.state.count;
+
+export default function Counter(props) {
+  const  [count,setCount] = useState(props.initialCount);
+  
+  
     return (
       <div className="container">
-        <h1>Count: {currentCount}</h1>
-        <button className="btn" onClick={() => this.setCount(initialCount)}>Reset</button>
-        <button className="btn" onClick={() => this.setCount(currentCount - 1)}>-</button>
-        <button className="btn" onClick={() => this.setCount(currentCount + 1)}>+</button>
+        <h1>Count: {count}</h1>
+        <button className="btn" onClick={() => setCount(props.initialCount)}>Reset</button>
+        <button className="btn" onClick={() => setCount(count - 1)}>-</button>
+        <button className="btn" onClick={() => setCount(count + 1)}>+</button>
       </div>
     );
-  }
+  
 }
 Counter.defaultProps = { initialCount: 0 };
